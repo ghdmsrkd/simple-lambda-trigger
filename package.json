@@ -1,0 +1,12 @@
+{
+  "name": "simple-lambda-trigger",
+  "version": "1.0.0",
+  "description": "simple-lambda-trigger",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-lift": "^1.1.2",
+    "serverless-offline": "^8.4.0",
+    "serverless-offline-aws-eventbridge": "^1.6.6"
+  }
+}
