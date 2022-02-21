@@ -5,9 +5,10 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "invoke:consumer": "sls invoke local --function consumer --path src/data/sqsMessage.json",
-    "invoke:scheduler": "sls invoke local --function scheduler",
-    "deploy": "sls deploy"
+    "invoke:consumer": "sls invoke local --function consumer --path src/data/sqsMessage.json --stage dev",
+    "invoke:scheduler": "sls invoke local --function scheduler --stage dev",
+    "dev": "sls offline start --stage dev",
+    "deploy:stage": "sls deploy --stage stage"
   },
   "devDependencies": {
     "@types/node-telegram-bot-api": "^0.56.0",

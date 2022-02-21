@@ -38,6 +38,12 @@ export const consumer = async (event) => {
     return tempArray.length !== (new Set(tempArray)).size
   })
 
+  const postUrlList: string = filteredPost.reduce((pre, cru) => {
+    return pre + `- https://velog.io/@${cru.user.username}/${cru.url_slug}\n`
+  },"")
+
   console.log(filteredPost)
-  await bot.sendMessage(process.env.CHAT_ID, "저도 반가워요");
+  await bot.sendMessage(process.env.CHAT_ID, `
+    관심 가질 만한 새로운 글이 작성 되었습니다!\n${postUrlList}
+  `);
 };
