@@ -1,7 +1,7 @@
-const { SQS } = require("aws-sdk");
+import { SQS } from "aws-sdk"
 const sqs = new SQS();
 
-const producer = async (event) => {
+export const producer = async (event) => {
   let statusCode = 200;
   let message;
 
@@ -41,25 +41,4 @@ const producer = async (event) => {
       message,
     }),
   };
-};
-
-const consumer = async (event) => {
-  for (const record of event.Records) {
-    const messageAttributes = record.messageAttributes;
-    console.log(
-      "Message Attribute: ",
-      messageAttributes.AttributeName.stringValue
-    );
-    console.log("Message Body: ", record.body);
-  }
-};
-
-const scheduler = async (event) => {
-  console.log("scheduler is working!!")
-}
-
-module.exports = {
-  producer,
-  consumer,
-  scheduler,
 };

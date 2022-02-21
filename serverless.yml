@@ -1,8 +1,8 @@
-service: sqs-worker
+service: simple-lambda-trigger
 frameworkVersion: '2 || 3'
 
 plugins:
-  - serverless-lift
+  - serverless-plugin-typescript
   - serverless-offline
   - serverless-offline-aws-eventbridge
 
@@ -11,16 +11,17 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   lambdaHashingVersion: '20201221'
   region: ap-northeast-2
   profile: 'my-admin-profile'
-
-constructs:
-  jobs:
-    type: queue
-    worker:
-      handler: src/handler.consumer
+  iam:
+   role: 
+     statements:
+       - Effect: "Allow"
+         Action:
+           - "dynamodb:*"
+         Resource: "*"
 
 functions:
   producer:
@@ -30,12 +31,12 @@ functions:
           method: post
           path: /produce
     environment:
-      QUEUE_URL: ${construct:jobs.queueUrl}
+      QUEUE_URL: "https://sqs.ap-northeast-2.amazonaws.com/458027456759/sqs-queue-dev"
   scheduler:
     handler: src/handler.scheduler
     events:
       - schedule:
-          rate: rate(1 minutes)
+          rate: cron(0 0 * * ? *) #매일 00:00에
   consumer:
     handler: src/handler.consumer
     events:
@@ -44,3 +45,26 @@ functions:
             Fn::GetAtt:
               - MyQueue
               - Arn
+
+resources:
+  Resources:
+    MyQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: sqs-queue-${opt:stage, self:provider.stage}
+    ScrapedPostTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: SCRAPED_POST
+        AttributeDefinitions:
+          - AttributeName: trending_type
+            AttributeType: S
+          - AttributeName: scraped_at
+            AttributeType: N  
+        KeySchema:
+          - AttributeName: trending_type
+            KeyType: HASH
+          - AttributeName: scraped_at
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+    
