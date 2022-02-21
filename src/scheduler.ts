@@ -10,18 +10,18 @@ export const scheduler = async (event) => {
   })
   const DDB = new DynamoDB.DocumentClient({
     region: "ap-northeast-2",
-    // endpoint:
-    //   process.env.NODE_ENV === "development"
-    //     ? "https://dynamodb.ap-northeast-2.amazonaws.com"
-    //     : null,
-    // accessKeyId:
-    //   process.env.NODE_ENV === "development"
-    //     ? process.env.AWS_ACCESS_KEY_ID
-    //     : null,
-    // secretAccessKey:
-    //   process.env.NODE_ENV === "development"
-    //     ? process.env.AWS_SECRET_ACCESS_KEY
-    //     : null,
+    endpoint:
+      process.env.NODE_ENV === "development"
+        ? "https://dynamodb.ap-northeast-2.amazonaws.com"
+        : null,
+    accessKeyId:
+      process.env.NODE_ENV === "development"
+        ? process.env.AWS_ACCESS_KEY_ID
+        : null,
+    secretAccessKey:
+      process.env.NODE_ENV === "development"
+        ? process.env.AWS_SECRET_ACCESS_KEY
+        : null,
   })
   const params = {
     TableName: "SCRAPED_POST",

@@ -2,6 +2,7 @@ service: simple-lambda-trigger
 frameworkVersion: '2 || 3'
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-plugin-typescript
   - serverless-offline
   - serverless-offline-aws-eventbridge
@@ -21,6 +22,7 @@ provider:
        - Effect: "Allow"
          Action:
            - "dynamodb:*"
+           - "sqs:*"
          Resource: "*"
 
 functions:
@@ -30,8 +32,6 @@ functions:
       - httpApi:
           method: post
           path: /produce
-    environment:
-      QUEUE_URL: "https://sqs.ap-northeast-2.amazonaws.com/458027456759/sqs-queue-dev"
   scheduler:
     handler: src/handler.scheduler
     events:

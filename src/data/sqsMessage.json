@@ -1,0 +1,16 @@
+{
+  "Records": [
+    {
+      "messageId": "884fccd0-c742-4f33-98f9-56c42db17ef9",
+      "receiptHandle": "AQEBOQLlzdwIjsbF+ulZ38MVq3rCNZ7rZsQ5DqW5TUb7t6pTz70zPBmvvu9VIff75LhoYqrlnzUiXMs/NqKXgb/3VYJmWxK77NfI42erZ9AK3IyPnZ7Mgdn/5aKlduZM5njpu9XnCj7ip0vWGmqjUvquioEEi/IQJOoRjco15VdkL6rcAda9kfkCbzr77bRUUi+pj1TyEbchVvNWFRgFk5Hns39VbNVLv/u4CXQEnn8zhkr+Hd4JAYL0qGfosTlWqrLAaS0mELIZrfrqpQAK+A95dAQVB+65EvODujxP58881O8qP8IJz1sxYHBQCH8IOEiYjDkvpymmpJcKorFMT2JMIADtf69xkdcUg+2IRXILmuqCEYz/Ed0euCA5GDU71qsv+0PEG1EJEMkA8lAYFGqFnA==",
+      "body": "{\"tags\": [\"알고리즘\",\"TIL\",\"python\", \"JavaScript\"]}",
+      "attributes": null,
+      "messageAttributes": null,
+      "md5OfMessageAttributes": "6e6aba56e93b3ddfdfe3fa28895feece",
+      "md5OfBody": "272b3ddb03f34edf4cf10efcae743f10",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:ap-northeast-2:458027456759:sqs-queue-dev",
+      "awsRegion": "ap-northeast-2"
+    }
+  ]
+}
